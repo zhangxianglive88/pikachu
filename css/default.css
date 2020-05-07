@@ -22,3 +22,25 @@ body{
     height: 100%;
 }
 
+.speed{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.speed > button{
+    margin: 10px;
+    padding: 5px;
+    background: #ddd;
+    border: none;
+}
+
+.speed > button:focus{
+    outline: none;
+}
+
+.speed > button.active{
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+}

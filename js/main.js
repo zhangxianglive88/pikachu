@@ -1,18 +1,38 @@
-!function(){
-    function writeCode(prefix, code, fn){
+!function () {
+    let duration = 50
+    $('.speed').on('click', 'button', function (e) {
+        let $button = $(e.currentTarget)
+        let speed = $button.attr('data-speed')
+        console.log(speed)
+        $button.addClass('active')
+            .siblings('.active').removeClass('active')
+        switch (speed) {
+            case 'low':
+                duration = 100
+                break
+            case 'normal':
+                duration = 50
+                break
+            case 'quick':
+                duration = 10
+                break
+        }
+    })
+    function writeCode(prefix, code, fn) {
         let container = document.querySelector('#code')
         let styleTag = document.querySelector('#styleTag')
         let n = 0
-        let id = setInterval(()=>{
+        let id = setTimeout(function run() {
             n += 1
             container.innerHTML = Prism.highlight(code.substring(0, n), Prism.languages.css, 'css');
             styleTag.innerHTML = code.substring(0, n)
             container.scrollTop = container.scrollHeight
-            if(n >= code.lenght){
-                window.clearInterval(id)
-                fn&&fn.call()
+            if (n < code.length) {
+                setTimeout(run, duration)
+            } else {
+                fn && fn.call()
             }
-        },10)
+        }, duration)
     }
 
     let code = `
@@ -176,6 +196,5 @@
 * 好了，皮卡丘画完啦~ 
 */
 `
-
     writeCode('', code)
 }.call()
