@@ -4,10 +4,11 @@
         let $button = $(e.currentTarget)
         let speed = $button.attr('data-speed')
         console.log(speed)
+
         $button.addClass('active')
             .siblings('.active').removeClass('active')
         switch (speed) {
-            case 'low':
+            case 'slow':
                 duration = 100
                 break
             case 'normal':
@@ -17,6 +18,7 @@
                 duration = 10
                 break
         }
+        console.log(duration)
     })
     function writeCode(prefix, code, fn) {
         let container = document.querySelector('#code')
